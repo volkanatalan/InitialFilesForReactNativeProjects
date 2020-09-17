@@ -10,7 +10,7 @@ import Svg, { Path } from 'react-native-svg'
 
 import vectorIcons from '../values/vectorIcons'
 import colors from '../values/colors'
-import commonStyles from '../values/commonStyles'
+import globalStyles from '../values/globalStyles'
 
 
 class Header extends React.Component {
@@ -75,7 +75,7 @@ class Header extends React.Component {
 
     return (
       <View style={[styles.header, style]}>
-        <View style={[commonStyles.flex1, commonStyles.alignStart]}>
+        <View style={[globalStyles.flex1, globalStyles.alignStart]}>
           {
             isBackButtonEnabled ?
               <TouchableOpacity
@@ -90,11 +90,11 @@ class Header extends React.Component {
         </View>
 
 
-        <View style={[commonStyles.flex3, commonStyles.alignCenter]}>
+        <View style={[globalStyles.flex3, globalStyles.alignCenter]}>
           {isTitleOnCenter ? title : null}
         </View>
 
-        <View style={[commonStyles.flex1, commonStyles.alignEnd]}>
+        <View style={[globalStyles.flex1, globalStyles.alignEnd]}>
           {button}
         </View>
       </View>

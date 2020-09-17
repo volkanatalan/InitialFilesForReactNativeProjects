@@ -8,7 +8,7 @@ import {
 
 import PropTypes, { oneOfType, string, array, func, object, number, shape } from 'prop-types'
 
-import commonStyles from '../values/commonStyles'
+import globalStyles from '../values/globalStyles'
 
 
 class ExpandingScrollView extends React.Component {
@@ -198,7 +198,7 @@ class ExpandingScrollView extends React.Component {
     return (
       <Animated.View
         onLayout={this.onContainerLayout}
-        style={[styles.container, commonStyles.elevate2, style, { top: containerTop }]}
+        style={[styles.container, globalStyles.elevate2, style, { top: containerTop }]}
         {...panResponder.panHandlers}
       >
         <Animated.View

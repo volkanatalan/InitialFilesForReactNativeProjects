@@ -2,7 +2,7 @@ import { StyleSheet, Platform } from 'react-native'
 import colors from './colors'
 
 
-const commonStyles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -233,4 +233,4 @@ const commonStyles = StyleSheet.create({
   }
 })
 
-export default commonStyles
+export default globalStyles
