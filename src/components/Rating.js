@@ -1,20 +1,16 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable semi */
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   View,
   Text,
   TouchableWithoutFeedback,
-} from 'react-native';
+} from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
-import PropTypes, { oneOfType, string, array, func, object, number, shape } from 'prop-types';
+import PropTypes, { oneOfType, string, array, func, object, number, shape } from 'prop-types'
 
 import vectorIcons from '../values/vectorIcons'
-import colors from '../values/colors';
+import colors from '../values/colors'
 
 
 
@@ -94,7 +90,7 @@ class Rating extends React.Component {
       <View style={[styles.container, style]}>
         {this.renderStars()}
       </View>
-    );
+    )
   }
 }
 
@@ -113,8 +109,8 @@ const styles = StyleSheet.create({
     width: starSize,
     height: starSize,
   },
-});
+})
 
 
 
-export default Rating;
+export default Rating

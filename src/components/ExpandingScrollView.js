@@ -1,16 +1,12 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable semi */
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   Animated,
   PanResponder,
   Easing,
-} from 'react-native';
+} from 'react-native'
 
-import PropTypes, { oneOfType, string, array, func, object, number, shape } from 'prop-types';
+import PropTypes, { oneOfType, string, array, func, object, number, shape } from 'prop-types'
 
 import commonStyles from '../values/commonStyles'
 
@@ -54,12 +50,12 @@ class ExpandingScrollView extends React.Component {
       onStartShouldSetPanResponder: () => true,
 
       onMoveShouldSetPanResponder: (e, gestureState) => {
-        const { dx, dy } = gestureState;
-        return (Math.abs(dx) > 5) || (Math.abs(dy) > 5);
+        const { dx, dy } = gestureState
+        return (Math.abs(dx) > 5) || (Math.abs(dy) > 5)
       },
 
       onPanResponderMove: (event, gesture) => {
-        var { dy } = gesture;
+        var { dy } = gesture
 
         this.state.contentTop.stopAnimation()
         this.state.contentTop.removeAllListeners()
@@ -87,7 +83,7 @@ class ExpandingScrollView extends React.Component {
         if (totalScrollY < maxTop && totalScrollY > minTop) {
           var isDistanceEnough = dy < -20 || dy > 20
 
-          let toValue = 0;
+          let toValue = 0
           if (isDistanceEnough) {
             if (dy > 0) {
               toValue = maxTop
@@ -116,7 +112,7 @@ class ExpandingScrollView extends React.Component {
             }).start(() => {
               // totalScrollY = this.state.containerTop.__getValue()
               this.state.containerTop.removeAllListeners()
-            });
+            })
           }
 
           // console.log(toValue)
@@ -144,12 +140,12 @@ class ExpandingScrollView extends React.Component {
             useNativeDriver: false,
           }).start(() => {
             this.state.contentTop.removeAllListeners()
-          });
+          })
         }
 
 
       },
-    });
+    })
 
 
 
@@ -211,7 +207,7 @@ class ExpandingScrollView extends React.Component {
           {children}
         </Animated.View>
       </Animated.View>
-    );
+    )
   }
 }
 
@@ -234,8 +230,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-});
+})
 
 
 
-export default ExpandingScrollView;
+export default ExpandingScrollView

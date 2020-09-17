@@ -1,15 +1,11 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable semi */
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   View,
   Text,
-} from 'react-native';
+} from 'react-native'
 
-import PropTypes, { oneOfType, string, array, func, object, number, shape } from 'prop-types';
+import PropTypes, { oneOfType, string, array, func, object, number, shape } from 'prop-types'
 
 
 class TableLayout extends React.Component {
@@ -50,9 +46,9 @@ class TableLayout extends React.Component {
 
   renderRows(colCount, items) {
 
-    var itemCount = items.length;
-    var rowCount = Math.ceil(itemCount / colCount);
-    var rows = [];
+    var itemCount = items.length
+    var rowCount = Math.ceil(itemCount / colCount)
+    var rows = []
 
     for (let i = 0; i < rowCount; i++) {
       var rowItems = []
@@ -80,12 +76,12 @@ class TableLayout extends React.Component {
 
 
   renderCols(colCount, rowNo, items) {
-    var {renderCellItem} = this.props;
+    var {renderCellItem} = this.props
 
     var cols = []
 
     for (let i = 0; i < colCount; i++) {
-      var index = rowNo * colCount + i;
+      var index = rowNo * colCount + i
       var item = items[i]
       var col = (
         <View key={'col' + index} style={{ flex: 1, margin: 1 }}>
@@ -103,13 +99,13 @@ class TableLayout extends React.Component {
 
   render() {
 
-    var { colCount, values, style } = this.props;
+    var { colCount, values, style } = this.props
 
     return (
       <View style={[styles.container, style]}>
         {this.renderRows(colCount, values)}
       </View>
-    );
+    )
   }
 }
 
@@ -119,8 +115,8 @@ const styles = StyleSheet.create({
     
   },
 
-});
+})
 
 
 
-export default TableLayout;
+export default TableLayout

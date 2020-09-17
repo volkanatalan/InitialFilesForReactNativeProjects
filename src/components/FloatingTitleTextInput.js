@@ -1,13 +1,9 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable eol-last */
-/* eslint-disable semi */
-
-import React, { Component } from 'react';
-import { View, Animated, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react'
+import { View, Animated, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
-import { string, func, object, number, bool } from 'prop-types';
-import vectorIcons from '../values/vectorIcons';
-import colors from '../values/colors';
+import { string, func, object, number, bool } from 'prop-types'
+import vectorIcons from '../values/vectorIcons'
+import colors from '../values/colors'
 
 
 
@@ -47,9 +43,9 @@ export default class FloatingTitleTextInput extends Component {
 
 
   constructor(props) {
-    super(props);
-    const { value } = this.props;
-    this.position = new Animated.Value(value ? 1 : 0);
+    super(props)
+    const { value } = this.props
+    this.position = new Animated.Value(value ? 1 : 0)
     this.state = {
       isFieldActive: false,
       showPassword: false,
@@ -60,12 +56,12 @@ export default class FloatingTitleTextInput extends Component {
 
   _handleFocus = () => {
     if (!this.state.isFieldActive) {
-      this.setState({ isFieldActive: true });
+      this.setState({ isFieldActive: true })
       Animated.timing(this.position, {
         toValue: 1,
         duration: 150,
         useNativeDriver: false,
-      }).start();
+      }).start()
     }
   }
 
@@ -73,29 +69,29 @@ export default class FloatingTitleTextInput extends Component {
 
   _handleBlur = () => {
     if (this.state.isFieldActive && !this.props.value) {
-      this.setState({ isFieldActive: false });
+      this.setState({ isFieldActive: false })
       Animated.timing(this.position, {
         toValue: 0,
         duration: 150,
         useNativeDriver: false,
-      }).start();
+      }).start()
     }
   }
 
 
 
   _onChangeText = (updatedValue) => {
-    const { attrName, updateMasterState } = this.props;
-    updateMasterState(attrName, updatedValue);
+    const { attrName, updateMasterState } = this.props
+    updateMasterState(attrName, updatedValue)
   }
 
 
 
   _returnAnimatedTitleStyles = () => {
-    const { isFieldActive } = this.state;
+    const { isFieldActive } = this.state
     const {
       titleActiveColor, titleInactiveColor, titleActiveSize, titleInActiveSize,
-    } = this.props;
+    } = this.props
 
     return {
       top: this.position.interpolate({

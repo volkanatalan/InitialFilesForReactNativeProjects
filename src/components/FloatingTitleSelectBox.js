@@ -1,9 +1,6 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-
-import React, { Component } from 'react';
-import { View, Animated, StyleSheet, Text, TouchableOpacity, Modal, ScrollView } from 'react-native';
-import { string, func, object, number, array } from 'prop-types';
+import React, { Component } from 'react'
+import { View, Animated, StyleSheet, Text, TouchableOpacity, Modal, ScrollView } from 'react-native'
+import { string, func, object, number, array } from 'prop-types'
 
 
 let modalHeight = 0
@@ -50,9 +47,9 @@ export default class FloatingTitleSelectBox extends Component {
 
 
   constructor(props) {
-    super(props);
-    const { value } = this.props;
-    this.position = new Animated.Value(value && value.value ? 1 : 0);
+    super(props)
+    const { value } = this.props
+    this.position = new Animated.Value(value && value.value ? 1 : 0)
 
     this.state = {
       modalVisible: false,
@@ -109,22 +106,22 @@ export default class FloatingTitleSelectBox extends Component {
 
   _handleFocus = () => {
     if (!this.state.isFieldActive) {
-      this.setState({ isFieldActive: true });
+      this.setState({ isFieldActive: true })
       Animated.timing(this.position, {
         toValue: 1,
         duration: 150,
         useNativeDriver: false,
-      }).start();
+      }).start()
     }
   }
 
 
 
   _onChangeValue = (updatedValue) => {
-    const { attrName, updateMasterState } = this.props;
+    const { attrName, updateMasterState } = this.props
     this.closeModal()
     this._handleFocus()
-    updateMasterState(attrName, updatedValue);
+    updateMasterState(attrName, updatedValue)
   }
 
 
@@ -136,10 +133,10 @@ export default class FloatingTitleSelectBox extends Component {
 
 
   _returnAnimatedTitleStyles = () => {
-    const { isFieldActive } = this.state;
+    const { isFieldActive } = this.state
     const {
       titleActiveColor, titleInactiveColor, titleActiveSize, titleInActiveSize,
-    } = this.props;
+    } = this.props
 
     return {
       top: this.position.interpolate({

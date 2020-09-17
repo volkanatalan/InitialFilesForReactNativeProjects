@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 const colors = {
   black: 'rgb(45,	45,	45)',
   gray: '#888888',
@@ -9,6 +8,6 @@ const colors = {
   seperatorGray: '#ededed',
   seperatorAppColor: '#d7fce7',
   shadow: '#000',
-};
+}
 
-export default colors;
+export default colors

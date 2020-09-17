@@ -1,8 +1,7 @@
-/* eslint-disable prettier/prettier */
 const strings = {
   appName: '',
   appNameUpperCase: '',
   GoogleApiKey: '',
-};
+}
 
-export default strings;
+export default strings

@@ -1,16 +1,17 @@
 
-import React from 'react';
+import React from 'react'
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import colors from './src/values/colors';
+import colors from './src/values/colors'
 
-import SplashScreen from './src/screens/SplashScreen';
-import LoginScreen from './src/screens/LoginScreen';
+import SplashScreen from './src/screens/SplashScreen'
+import LoginScreen from './src/screens/LoginScreen'
+import HomeScreen from './src/screens/HomeScreen'
 
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 
 class App extends React.Component {
@@ -20,7 +21,6 @@ class App extends React.Component {
 
       <NavigationContainer>
         <Stack.Navigator>
-
 
           <Stack.Screen
             name="SplashScreen"
@@ -34,10 +34,16 @@ class App extends React.Component {
             options={{ headerShown: false }}
           />
 
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+
         </Stack.Navigator>
       </NavigationContainer>
     )
   }
 }
 
-export default App;
+export default App

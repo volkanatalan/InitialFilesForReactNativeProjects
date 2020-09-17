@@ -1,21 +1,14 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable keyword-spacing */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable semi */
-/* eslint-disable no-unused-vars */
-
-import React from 'react';
+import React from 'react'
 import {
   View,
   StyleSheet,
   TouchableOpacity,
   Text,
-} from 'react-native';
-import PropTypes from 'prop-types';
-import Svg, { Path } from 'react-native-svg';
+} from 'react-native'
+import PropTypes from 'prop-types'
+import Svg, { Path } from 'react-native-svg'
 
-import vectorIcons from '../values/vectorIcons';
+import vectorIcons from '../values/vectorIcons'
 import colors from '../values/colors'
 import commonStyles from '../values/commonStyles'
 
@@ -105,7 +98,7 @@ class Header extends React.Component {
           {button}
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -121,4 +114,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Header;
+export default Header

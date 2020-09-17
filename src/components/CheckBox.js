@@ -1,20 +1,14 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable keyword-spacing */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable semi */
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   View,
   Text,
   TouchableWithoutFeedback,
   TouchableOpacity,
-} from 'react-native';
-import LottieView from 'lottie-react-native';
+} from 'react-native'
+import LottieView from 'lottie-react-native'
 
-import PropTypes, { oneOfType, string, array, func, object, number, shape, bool } from 'prop-types';
+import PropTypes, { oneOfType, string, array, func, object, number, shape, bool } from 'prop-types'
 
 
 class CheckBox extends React.Component {
@@ -62,17 +56,17 @@ class CheckBox extends React.Component {
 
       if (type == 2) {
         if (this.value) {
-          this.animation.play(60, 60);
+          this.animation.play(60, 60)
         } else {
-          this.animation.play(0, 0);
+          this.animation.play(0, 0)
         }
       }
 
       else {
         if (this.value) {
-          this.animation.play(75, 75);
+          this.animation.play(75, 75)
         } else {
-          this.animation.play(150, 150);
+          this.animation.play(150, 150)
         }
       }
 
@@ -95,17 +89,17 @@ class CheckBox extends React.Component {
 
       if (type == 2) {
         if (this.value) {
-          this.animation.play(10, 60);
+          this.animation.play(10, 60)
         } else {
-          this.animation.play(0, 10);
+          this.animation.play(0, 10)
         }
       }
 
       else {
         if (this.value) {
-          this.animation.play(0, 75);
+          this.animation.play(0, 75)
         } else {
-          this.animation.play(75, 150);
+          this.animation.play(75, 150)
         }
       }
     }
@@ -127,7 +121,7 @@ class CheckBox extends React.Component {
         <View style={[styles.container, style]}>
           <LottieView
             ref={animation => {
-              this.animation = animation;
+              this.animation = animation
             }}
             speed={type == 2 ? 1 : 6}
             loop={false}
@@ -135,7 +129,7 @@ class CheckBox extends React.Component {
           />
         </View>
       </TouchableOpacity >
-    );
+    )
   }
 }
 
@@ -147,8 +141,8 @@ const styles = StyleSheet.create({
     width: 47,
     height: 47,
   },
-});
+})
 
 
 
-export default CheckBox;
+export default CheckBox

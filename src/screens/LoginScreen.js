@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   View,
   Text,
-} from 'react-native';
+} from 'react-native'
 
-import colors from '../values/colors';
+import colors from '../values/colors'
+import globalStyles from '../values/globalStyles'
 
 
 class LoginScreen extends React.Component {
@@ -31,7 +32,7 @@ class LoginScreen extends React.Component {
       <View style={styles.container}>
 
       </View>
-    );
+    )
   }
 }
 
@@ -42,8 +43,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
   },
   
-});
+})
 
 
 
-export default LoginScreen;
+export default LoginScreen

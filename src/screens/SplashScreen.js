@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   View,
   Text,
-} from 'react-native';
+} from 'react-native'
 
-import colors from '../values/colors';
+import colors from '../values/colors'
+import globalStyles from '../values/globalStyles'
 
 
 class SplashScreen extends React.Component {
@@ -34,7 +35,7 @@ class SplashScreen extends React.Component {
       <View style={styles.container}>
         
       </View>
-    );
+    )
   }
 }
 
@@ -45,8 +46,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
   },
 
-});
+})
 
 
 
-export default SplashScreen;
+export default SplashScreen

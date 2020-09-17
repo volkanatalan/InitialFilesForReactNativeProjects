@@ -1,9 +1,7 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable semi */
 export default class InputScripts {
   allowOnlyNumber(text) {
     var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    let resultText = '';
+    let resultText = ''
 
     for (let i = 0; i < text.length; i++) {
       if (numbers.includes(text[i])) {

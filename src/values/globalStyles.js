@@ -1,7 +1,5 @@
-/* eslint-disable prettier/prettier */
-
-import { StyleSheet, Platform } from 'react-native';
-import colors from './colors';
+import { StyleSheet, Platform } from 'react-native'
+import colors from './colors'
 
 
 const commonStyles = StyleSheet.create({
@@ -233,6 +231,6 @@ const commonStyles = StyleSheet.create({
   stretchSelf: {
     alignSelf: 'stretch',
   }
-});
+})
 
-export default commonStyles;
+export default commonStyles
