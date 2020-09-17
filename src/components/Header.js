@@ -18,8 +18,9 @@ class Header extends React.Component {
     navigation: PropTypes.any,
     title: PropTypes.element,
     button: PropTypes.element,
-    isBackButtonEnabled: PropTypes.bool,
+    leftButtonType: PropTypes.oneOf(['none', 'back', 'navigationDrawer']),
     backButtonIcon: PropTypes.element,
+    navigationDrawerButtonIcon: PropTypes.element,
     isTitleOnCenter: PropTypes.bool,
     style: PropTypes.oneOfType([
       PropTypes.array,
@@ -35,11 +36,18 @@ class Header extends React.Component {
 
 
   static defaultProps = {
-    isBackButtonEnabled: false,
-    isTitleOnCenter: false,
+    leftButtonType: 'none',
+    isTitleOnCenter: true,
     backButtonIcon: (
       <Svg height="20" width="20" viewBox={vectorIcons.chevron.viewBox}>
         <Path fill="white" d={vectorIcons.chevron.d} />
+      </Svg>
+    ),
+    navigationDrawerButtonIcon: (
+      <Svg height="20" width="20" viewBox={vectorIcons.menu.viewBox}>
+        <Path fill="white" d={vectorIcons.menu.d1} />
+        <Path fill="white" d={vectorIcons.menu.d2} />
+        <Path fill="white" d={vectorIcons.menu.d3} />
       </Svg>
     ),
   }
@@ -71,17 +79,36 @@ class Header extends React.Component {
 
   render = () => {
 
-    var { navigation, style, title, button, isBackButtonEnabled, isTitleOnCenter, backButtonIcon } = this.props
+    var {
+      navigation,
+      style,
+      title,
+      button,
+      leftButtonType,
+      isTitleOnCenter,
+      backButtonIcon,
+      navigationDrawerButtonIcon,
+    } = this.props
 
     return (
       <View style={[styles.header, style]}>
         <View style={[globalStyles.flex1, globalStyles.alignStart]}>
           {
-            isBackButtonEnabled ?
+            leftButtonType == 'back' || leftButtonType == 'navigationDrawer' ?
               <TouchableOpacity
                 style={{ padding: 15, }}
-                onPress={() => navigation.goBack()}>
-                {backButtonIcon}
+                onPress={() => {
+                  leftButtonType == 'back' ?
+                    navigation.goBack()
+                    :
+                    navigation.toggleDrawer()
+                }}>
+                {
+                  leftButtonType == 'back' ?
+                    backButtonIcon
+                    :
+                    navigationDrawerButtonIcon
+                }
               </TouchableOpacity>
               : null
           }
@@ -110,7 +137,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    backgroundColor: colors.headerColor,
+    backgroundColor: colors.appColor,
   }
 })
 
