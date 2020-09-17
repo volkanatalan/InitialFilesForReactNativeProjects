@@ -3,9 +3,33 @@ import colors from './colors'
 
 
 const globalStyles = StyleSheet.create({
-  row: {
+  absoluteTop: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0,
+  },
+
+  fullSize: {
+    width: '100%',
+    height: '100%',
+  },
+
+  fullWidth: {
+    width: '100%',
+  },
+
+  modalBackground: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)'
+  },
+
+  rowCenter: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+
+  row: {
+    flexDirection: 'row',
   },
 
   flex1: {
@@ -71,6 +95,27 @@ const globalStyles = StyleSheet.create({
     }),
     backgroundColor: 'white',
     marginBottom: 15,
+    borderRadius: 5,
+  },
+
+  sectionDark: {
+    ...Platform.select({
+      ios: {
+        shadowColor: colors.shadow,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+    backgroundColor: '#222222',
+    marginBottom: 15,
+    borderRadius: 5,
   },
 
   alignStart: {
@@ -83,6 +128,10 @@ const globalStyles = StyleSheet.create({
 
   alignEnd: {
     alignItems: 'flex-end',
+  },
+
+  justifyCenter: {
+    justifyContent: 'center',
   },
 
   center: {
@@ -161,6 +210,13 @@ const globalStyles = StyleSheet.create({
     marginHorizontal: 10,
   },
 
+  seperatorHGrayDark: {
+    height: 1,
+    backgroundColor: colors.seperatorGrayDark,
+    alignSelf: 'stretch',
+    marginHorizontal: 10,
+  },
+
   seperatorHGray10: {
     height: 1,
     backgroundColor: colors.seperatorGray,
@@ -230,7 +286,12 @@ const globalStyles = StyleSheet.create({
 
   stretchSelf: {
     alignSelf: 'stretch',
-  }
+  },
+
+  headerTextTitle: {
+    color: 'white',
+    fontSize: 15,
+  },
 })
 
 export default globalStyles

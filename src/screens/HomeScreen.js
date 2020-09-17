@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native'
 
 import Header from '../components/Header'
@@ -16,39 +17,40 @@ import globalStyles from '../values/globalStyles'
 
 export default class HomeScreen extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.state = {
-      
+
     }
   }
 
 
   componentDidMount() {
-    
+
   }
 
 
 
-  render(){
+  render() {
 
     var {
 
     } = this.state
 
-    return(
+    return (
       <View style={[styles.container]}>
+        <StatusBar backgroundColor={colors.appColor} />
         <SafeAreaView style={{ backgroundColor: colors.appColor }} />
         <SafeAreaView style={{ flex: 1 }}>
           <Header
-            leftButtonType="back"
+            leftButtonType="none"
             navigation={this.props.navigation}
             title={<Text style={[globalStyles.headerTextTitle]}>HomeScreen</Text>}
           />
           <ScrollView style={{ flex: 1 }}>
             <View>
-              
+
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -59,9 +61,8 @@ export default class HomeScreen extends React.Component {
 
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     backgroundColor: colors.backgroundColor,
   },
-  
 })
