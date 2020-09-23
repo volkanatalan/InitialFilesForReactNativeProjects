@@ -23,13 +23,18 @@ const globalStyles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)'
   },
 
+  row: {
+    flexDirection: 'row',
+  },
+
   rowCenter: {
     flexDirection: 'row',
     alignItems: 'center',
   },
 
-  row: {
+  rowBottom: {
     flexDirection: 'row',
+    alignItems: 'flex-end',
   },
 
   flex1: {
@@ -171,6 +176,10 @@ const globalStyles = StyleSheet.create({
 
   buttonText: {
     color: 'white',
+  },
+
+  underline: {
+    textDecorationLine: 'underline',
   },
 
   faintTitle: {
