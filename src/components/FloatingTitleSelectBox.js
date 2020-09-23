@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { View, Animated, StyleSheet, Text, TouchableOpacity, Modal, ScrollView } from 'react-native'
-import { string, func, object, number, array } from 'prop-types'
+import { oneOf, oneOfType, string, func, object, number, array, shape } from 'prop-types'
+import Svg, { Path } from 'react-native-svg'
+import vectorIcons from '../values/vectorIcons'
+import colors from '../values/colors'
 
 
 let modalHeight = 0
@@ -10,22 +13,29 @@ const modalPadding = 20
 
 export default class FloatingTitleSelectBox extends Component {
 
-
-
-
   static propTypes = {
     attrName: string.isRequired,
     title: string.isRequired,
     value: object.isRequired,
     values: array.isRequired,
     updateMasterState: func.isRequired,
-    keyboardType: string,
-    titleActiveSize: number, // to control size of title when field is active
-    titleInActiveSize: number, // to control size of title when field is inactive
-    titleActiveColor: string, // to control color of title when field is active
-    titleInactiveColor: string, // to control color of title when field is active
-    textStyles: object,
-    style: object,
+    titleActiveSize: number,
+    titleInActiveSize: number,
+    titleActiveColor: string,
+    titleActiveDarkColor: string,
+    titleInactiveColor: string,
+    titleInactiveDarkColor: string,
+    theme: oneOf(['light', 'dark']),
+    textStyle: oneOfType([
+      shape({}),
+      array,
+      object,
+    ]),
+    style: oneOfType([
+      shape({}),
+      array,
+      object,
+    ]),
     otherTextProps: object,
   }
 
@@ -34,14 +44,16 @@ export default class FloatingTitleSelectBox extends Component {
   static defaultProps = {
     value: {},
     values: [],
-    keyboardType: 'default',
-    titleActiveSize: 11.5,
+    titleActiveSize: 12,
     titleInActiveSize: 15,
     titleActiveColor: 'black',
+    titleActiveDarkColor: 'darkgray',
     titleInactiveColor: 'grey',
-    textStyles: {},
+    titleInactiveDarkColor: 'grey',
+    textStyle: {},
     style: {},
     otherTextInputAttributes: {},
+    theme: 'light',
   }
 
 
@@ -54,7 +66,7 @@ export default class FloatingTitleSelectBox extends Component {
     this.state = {
       modalVisible: false,
       modalBoxHeight: 0,
-      isFieldActive: false,
+      isFieldActive: value && value.value,
     }
   }
 
@@ -85,16 +97,23 @@ export default class FloatingTitleSelectBox extends Component {
 
 
   renderItems() {
-    var { values } = this.props
+    var { values, theme } = this.props
     var items = []
 
     for (let i = 0; i < values.length; i++) {
       items.push(
         <TouchableOpacity
-          style={[styles.item]}
+          key={'item' + i}
+          style={[
+            styles.item,
+            i == values.length - 1 ? { borderBottomWidth: 0 } : null,
+            theme == 'dark' ? styles.itemDark : null
+          ]}
           onPress={() => { this._onChangeValue(values[i]) }}
         >
-          <Text style={[styles.itemText]}>{values[i].label}</Text>
+          <Text style={[styles.itemText, theme == 'dark' ? styles.itemTextDark : null]}>
+            {values[i].label}
+          </Text>
         </TouchableOpacity>
       )
     }
@@ -133,6 +152,7 @@ export default class FloatingTitleSelectBox extends Component {
 
 
   _returnAnimatedTitleStyles = () => {
+    const { theme, titleActiveDarkColor, titleInactiveDarkColor } = this.props
     const { isFieldActive } = this.state
     const {
       titleActiveColor, titleInactiveColor, titleActiveSize, titleInActiveSize,
@@ -141,10 +161,10 @@ export default class FloatingTitleSelectBox extends Component {
     return {
       top: this.position.interpolate({
         inputRange: [0, 1],
-        outputRange: [16, 5],
+        outputRange: [15, 7],
       }),
       fontSize: isFieldActive ? titleActiveSize : titleInActiveSize,
-      color: isFieldActive ? titleActiveColor : titleInactiveColor,
+      color: isFieldActive && theme == 'dark' ? titleActiveDarkColor : isFieldActive ? titleActiveColor : theme == 'dark' ? titleInactiveDarkColor : titleInactiveColor,
     }
   }
 
@@ -152,19 +172,24 @@ export default class FloatingTitleSelectBox extends Component {
 
   render() {
 
+    var { theme } = this.props
     var { modalVisible } = this.state
 
     return (
-      <View style={[styles.container, this.props.style]}>
+      <View style={[styles.container, theme == 'dark' ? styles.containerDark : null, this.props.style]}>
 
         <TouchableOpacity onPress={() => { this.setState({ modalVisible: true }) }}>
 
-          <Animated.Text style={[styles.titleStyles, this._returnAnimatedTitleStyles()]} >
+          <Animated.Text style={[styles.title, this._returnAnimatedTitleStyles()]} >
             {this.props.title}
           </Animated.Text>
 
+          <Svg style={[styles.chevron]} viewBox={vectorIcons.chevron.viewBox}>
+            <Path d={vectorIcons.chevron.d} fill={'gray'} />
+          </Svg>
+
           <Text
-            style={[styles.text, this.props.textStyles]}
+            style={[styles.text, theme == 'dark' ? styles.textDark : null, this.props.textStyle]}
             numberOfLines={1}
             {...this.props.otherTextProps}
           >
@@ -175,9 +200,8 @@ export default class FloatingTitleSelectBox extends Component {
 
 
 
-
-
         <Modal
+          animationType="fade"
           visible={modalVisible}
           transparent={true}
           onRequestClose={() => { this.setState({ modalVisible: false }) }}
@@ -187,7 +211,7 @@ export default class FloatingTitleSelectBox extends Component {
             onLayout={(e) => { this.onModalLayout(e) }} >
 
             <View style={[styles.scrollContainer, { height: this.state.modalBoxHeight }]}>
-              <ScrollView style={[styles.scroll]}>
+              <ScrollView style={[styles.scroll, theme == 'dark' ? styles.scrollDark : null]}>
                 <View
                   style={[styles.scrollInside]}
                   onLayout={(e) => { this.onModalContentContainerLayout(e) }}>
@@ -208,22 +232,30 @@ export default class FloatingTitleSelectBox extends Component {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    height: 50,
     borderRadius: 5,
-    borderStyle: 'solid',
     borderWidth: 0.5,
     paddingHorizontal: 5,
   },
 
-  text: {
-    fontSize: 15,
-    color: 'black',
-    padding: 0,
-    paddingTop: 25,
-    paddingBottom: 5,
-    paddingHorizontal: 5,
+  containerDark: {
+    borderColor: 'white',
   },
 
-  titleStyles: {
+  text: {
+    fontSize: 17,
+    color: 'black',
+    padding: 0,
+    paddingTop: 21,
+    paddingHorizontal: 5,
+    marginEnd: 25,
+  },
+
+  textDark: {
+    color: 'white',
+  },
+
+  title: {
     position: 'absolute',
     left: 5,
   },
@@ -245,6 +277,10 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
 
+  scrollDark: {
+    backgroundColor: colors.modalWindowDark,
+  },
+
   scrollInside: {
     padding: 3,
   },
@@ -257,7 +293,23 @@ const styles = StyleSheet.create({
     borderBottomColor: 'lightgray',
   },
 
+  itemDark: {
+    borderBottomColor: 'gray',
+  },
+
   itemText: {
     fontSize: 16,
   },
+
+  itemTextDark: {
+    color: 'lightgray',
+  },
+
+  chevron: {
+    position: 'absolute',
+    top: 17.5, right: 5,
+    width: 15,
+    height: 15,
+    transform: [{ rotate: '-90deg' }]
+  }
 })
