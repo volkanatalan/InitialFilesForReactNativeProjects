@@ -3,6 +3,8 @@ import {
   StyleSheet,
   View,
   Text,
+  ActivityIndicator,
+  StatusBar,
 } from 'react-native'
 
 import colors from '../values/colors'
@@ -19,7 +21,7 @@ class SplashScreen extends React.Component {
     }
   }
 
-  
+
 
   componentDidMount() {
     // setTimeout(() => {
@@ -33,7 +35,8 @@ class SplashScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        
+        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+        <ActivityIndicator size="large" color={colors.appColor} />
       </View>
     )
   }
@@ -43,7 +46,9 @@ class SplashScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
 })
