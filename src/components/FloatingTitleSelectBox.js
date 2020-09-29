@@ -26,6 +26,8 @@ export default class FloatingTitleSelectBox extends Component {
     titleInactiveColor: string,
     titleInactiveDarkColor: string,
     theme: oneOf(['light', 'dark']),
+    renderListItem: func,
+    renderselectedItem: func,
     textStyle: oneOfType([
       shape({}),
       array,
@@ -97,7 +99,7 @@ export default class FloatingTitleSelectBox extends Component {
 
 
   renderItems() {
-    var { values, theme } = this.props
+    var { values, theme, renderListItem } = this.props
     var items = []
 
     for (let i = 0; i < values.length; i++) {
@@ -111,9 +113,13 @@ export default class FloatingTitleSelectBox extends Component {
           ]}
           onPress={() => { this._onChangeValue(values[i]) }}
         >
-          <Text style={[styles.itemText, theme == 'dark' ? styles.itemTextDark : null]}>
-            {values[i].label}
-          </Text>
+          {renderListItem ?
+            renderListItem(values[i], i)
+            :
+            <Text style={[styles.itemText, theme == 'dark' ? styles.itemTextDark : null]}>
+              {values[i].label}
+            </Text>
+          }
         </TouchableOpacity>
       )
     }
@@ -172,7 +178,7 @@ export default class FloatingTitleSelectBox extends Component {
 
   render() {
 
-    var { theme } = this.props
+    var { theme, renderselectedItem } = this.props
     var { modalVisible } = this.state
 
     return (
@@ -188,13 +194,20 @@ export default class FloatingTitleSelectBox extends Component {
             <Path d={vectorIcons.chevron.d} fill={'gray'} />
           </Svg>
 
-          <Text
-            style={[styles.text, theme == 'dark' ? styles.textDark : null, this.props.textStyle]}
-            numberOfLines={1}
-            {...this.props.otherTextProps}
-          >
-            {this.props.value.label}
-          </Text>
+          {renderselectedItem ?
+            <View style={[styles.customSelectedItemContainer]}>
+              {renderselectedItem(this.props.value)}
+            </View>
+
+            :
+            <Text
+              style={[styles.text, theme == 'dark' ? styles.textDark : null, this.props.textStyle]}
+              numberOfLines={1}
+              {...this.props.otherTextProps}
+            >
+              {this.props.value.label}
+            </Text>
+          }
 
         </TouchableOpacity>
 
@@ -236,10 +249,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 0.5,
     paddingHorizontal: 5,
+    overflow: 'hidden',
   },
 
   containerDark: {
     borderColor: 'white',
+  },
+
+  customSelectedItemContainer: {
+    paddingTop: 21,
   },
 
   text: {
