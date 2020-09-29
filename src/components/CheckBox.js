@@ -2,8 +2,6 @@ import React from 'react'
 import {
   StyleSheet,
   View,
-  Text,
-  TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native'
 import LottieView from 'lottie-react-native'
@@ -75,17 +73,9 @@ class CheckBox extends React.Component {
 
 
 
-  toggle(){
-    this.onPress()
-  }
-
-
-
-  onPress() {
-    var { disabled, onValueChange, type } = this.props
-    this.value = !this.value
-
-    if (this.animation && !disabled) {
+  _animate() {
+    var { type } = this.props
+    if (this.animation) {
 
       if (type == 2) {
         if (this.value) {
@@ -103,8 +93,33 @@ class CheckBox extends React.Component {
         }
       }
     }
+  }
 
-    onValueChange(this.value)
+
+
+  setChecked(value) {
+    if (this.value != value) {
+      this.value = value
+      this._animate()
+    }
+  }
+
+
+
+  toggle() {
+    this.onPress()
+  }
+
+
+
+  onPress() {
+    var { disabled, onValueChange } = this.props
+
+    if (!disabled) {
+      this.value = !this.value
+      this._animate()
+      onValueChange(this.value)
+    }
   }
 
 
