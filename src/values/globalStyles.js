@@ -3,6 +3,15 @@ import colors from './colors'
 
 
 const globalStyles = StyleSheet.create({
+  absoluteFullScreen: {
+    position: 'absolute',
+    top: 0, left: 0, bottom: 0, right: 0,
+  },
+  flexFullScreen: {
+    flex: 1,
+    top: 0, left: 0, bottom: 0, right: 0,
+  },
+
   absoluteTop: {
     position: 'absolute',
     top: 0, left: 0, right: 0,
@@ -47,6 +56,23 @@ const globalStyles = StyleSheet.create({
 
   flex3: {
     flex: 3,
+  },
+
+  elevate0: {
+    ...Platform.select({
+      ios: {
+        shadowColor: colors.shadow,
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+      },
+      android: {
+        elevation: 0,
+      },
+    }),
   },
 
   elevate2: {
@@ -178,6 +204,10 @@ const globalStyles = StyleSheet.create({
     color: 'white',
   },
 
+  bold: {
+    fontWeight: 'bold',
+  },
+
   underline: {
     textDecorationLine: 'underline',
   },
@@ -298,7 +328,6 @@ const globalStyles = StyleSheet.create({
   },
 
   headerTextTitle: {
-    color: 'white',
     fontSize: 15,
   },
 })
