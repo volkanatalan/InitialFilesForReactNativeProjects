@@ -11,6 +11,8 @@ import {
 
 import Header from '../components/Header'
 
+import Language, { isRtl, hiddenArabicCharacter } from '../scripts/Language'
+
 import colors from '../values/colors'
 import globalStyles from '../values/globalStyles'
 
@@ -46,7 +48,7 @@ export default class HomeScreen extends React.Component {
           <Header
             leftButtonType="none"
             navigation={this.props.navigation}
-            title={<Text style={[globalStyles.headerTextTitle]}>HomeScreen</Text>}
+            title={<Text style={[globalStyles.headerTextTitle]}>{Language.t("HomePage")}</Text>}
           />
           <ScrollView style={{ flex: 1 }}>
             <View>

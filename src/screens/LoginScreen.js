@@ -5,6 +5,8 @@ import {
   Text,
 } from 'react-native'
 
+import Language, { isRtl, hiddenArabicCharacter } from '../scripts/Language'
+
 import colors from '../values/colors'
 import globalStyles from '../values/globalStyles'
 

@@ -1,5 +1,5 @@
 {
-  "name": "RestoranSiparisTakip",
+  "name": "AwesomeProject",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.0",
     "@react-navigation/stack": "^5.7.0",
+    "i18n-js": "^3.8.0",
     "lottie-ios": "3.1.3",
     "lottie-react-native": "^3.4.0",
     "react": "16.13.1",
